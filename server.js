@@ -24,6 +24,38 @@ app.use(morgan('dev'));
 // used for requests that our frontend will make
 app.use(express.static(__dirname + '/public'));
 
+// Test data
+var ingredients = [
+    {
+        'id': '232kdf',
+        'text': 'Eggs'
+    },
+    {
+        'id': '841fdj',
+        'text': 'Milk'
+    },
+    {
+        'id': '467klv',
+        'text': 'Ham'
+    },
+    {
+        'id': '096als',
+        'text': 'Bacon'
+    }
+];
+
+// Test GET call
+app.get('/ingredients', function(req, res) {
+    res.send(ingredients);
+});
+
+// Test POST call
+app.post('/ingredients', function(req, res) {
+    var ingredient = req.body;
+    ingredients.push(ingredient);
+    res.status(200).send("Successfully posted ingredient");
+});
+
 // MAIN CATCHALL ROUTE --------------
 // SEND USERS TO FRONTEND -----------
 // has to be registered after any API ROUTES
